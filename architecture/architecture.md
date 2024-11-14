@@ -1,5 +1,5 @@
 # Architecture
-![Project Architecture](https://github.com/pxlit-projects/project-KianVanDyckPXL/blob/main/architecture/JavaSchema.png)
+![Project Architecture](https://github.com/pxlit-projects/project-KianVanDyckPXL/blob/main/architecture/JavaSchema_02.png)
 
 # Systeemarchitectuur Overzicht
 Dit README geeft een overzicht van de systeemarchitectuur, waarbij de componenten en hun interacties binnen het systeem worden beschreven. De architectuur is opgedeeld in frontend- en backend-services, met gebruik van microservices en berichtgestuurde communicatie voor schaalbaarheid en modulariteit.
@@ -23,8 +23,6 @@ Angular Frontend: De gebruikersinterface, gebouwd met Angular, waarmee gebruiker
 **CommentService**: Beheert reacties op berichten en reviews. Deze service werkt samen met PostService en ReviewService om relevante informatie voor elke reactie op te halen.
 
 **Message Bus / RabbitMQ**: Behandelt asynchrone communicatie tussen services met behulp van berichtwachtrijen. Bijvoorbeeld, wanneer bepaalde gebeurtenissen worden geactiveerd in de PostService, kunnen ze berichten sturen naar de NotificationService om gebruikers op de hoogte te stellen.
-
-**NotificationService**: Verantwoordelijk voor het versturen van meldingen naar gebruikers op basis van gebeurtenissen van andere services. Luistert naar berichten van RabbitMQ om meldingen te verwerken.
 
 **ConfigService**: Beheert configuratie-instellingen en biedt gecentraliseerde configuratie voor alle services.
 
