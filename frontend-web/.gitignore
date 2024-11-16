@@ -1,2 +1,4 @@
 # Complete this file for an Angular webapplication
 # tip: http://gitignore.io
+
+/project/.vscode
