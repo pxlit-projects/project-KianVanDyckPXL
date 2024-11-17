@@ -20,4 +20,5 @@ public class PostResponse {
     private String content;
     private String author;
     private LocalDateTime createdAt;
+    private boolean isConcept;
 }

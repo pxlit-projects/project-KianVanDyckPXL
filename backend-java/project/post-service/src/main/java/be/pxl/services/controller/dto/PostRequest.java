@@ -1,6 +1,7 @@
 package be.pxl.services.controller.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.annotation.Nonnull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,4 +19,7 @@ public class PostRequest {
     private String content;
     @Nonnull
     private String author;
+
+    @JsonProperty("isConcept")
+    private boolean isConcept;
 }
