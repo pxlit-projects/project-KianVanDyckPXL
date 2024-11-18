@@ -11,4 +11,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     @Query("SELECT p FROM Post p WHERE p.isConcept = false")
     List<Post> findAllByConceptIsFalse();
+
+    List<Post> findByAuthor(String author);
 }

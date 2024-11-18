@@ -27,4 +27,8 @@ export class PostService {
   getAllPublishedPosts(): Observable<PostResponse[]> {
     return this.http.get<PostResponse[]>(this.api);
   }
+
+  getPostsByAuthor(author: string): Observable<PostResponse[]> {
+    return this.http.get<PostResponse[]>(`${this.api}/author/${author}`);
+  }
 }

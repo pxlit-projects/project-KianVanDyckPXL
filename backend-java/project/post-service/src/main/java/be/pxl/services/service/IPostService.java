@@ -16,4 +16,6 @@ public interface IPostService {
     Post getPostById(Long id) throws ResourceNotFoundException;
 
     List<Post> getAllPosts();
+
+    List<PostResponse> getPostsByAuthor(String author);
 }

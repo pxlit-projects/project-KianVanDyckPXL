@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +39,6 @@ public class PostService implements IPostService {
     public void updatePost(Long id, PostRequest postRequest) throws ResourceNotFoundException {
         Post existingPost = _postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post not found with id: " + id));
-
         existingPost.setTitle(postRequest.getTitle());
         existingPost.setContent(postRequest.getContent());
         existingPost.setAuthor(postRequest.getAuthor());
@@ -57,4 +57,16 @@ public class PostService implements IPostService {
         return _postRepository.findAllByConceptIsFalse();
     }
 
+    public List<PostResponse> getPostsByAuthor(String author) {
+        return _postRepository.findByAuthor(author).stream()
+                .map(post -> PostResponse.builder()
+                        .id(post.getId())
+                        .title(post.getTitle())
+                        .content(post.getContent())
+                        .author(post.getAuthor())
+                        .createdAt(post.getCreatedAt())
+                        .isConcept(post.isConcept())
+                        .build())
+                .collect(Collectors.toList());
+    }
 }

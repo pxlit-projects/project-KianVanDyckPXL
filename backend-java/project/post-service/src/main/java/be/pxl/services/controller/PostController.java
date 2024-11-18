@@ -80,4 +80,11 @@ public class PostController {
         return ResponseEntity.ok(postResponses);
     }
 
+    @GetMapping("author/{author}")
+    public ResponseEntity<List<PostResponse>> getPostsByAuthor(@PathVariable String author) {
+        List<PostResponse> posts = postService.getPostsByAuthor(author);
+        return ResponseEntity.ok(posts);
+    }
+
+
 }

@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
-import { PostResponse } from '../../../../../shared/models/postResponse.model';
-import { PostService } from '../../../../../services/post.service';
+
+import { PostResponse } from '../../../shared/models/postResponse.model';
+import { PostService } from '../../../services/post.service';
 import { DatePipe } from '@angular/common';
 
+
 @Component({
-  selector: 'app-post-list',
+  selector: 'app-author-post-list',
   standalone: true,
   imports: [DatePipe],
-  templateUrl: './post-list.component.html',
-  styleUrl: './post-list.component.css'
+  templateUrl: './author-post-list.component.html',
+  styleUrl: './author-post-list.component.css'
 })
-export class PostListComponent {
-
+export class AuthorPostListComponent {
   posts: PostResponse[] = [];
 
   constructor(private postService: PostService) { }
@@ -23,3 +24,4 @@ export class PostListComponent {
     });
   }
 }
+
