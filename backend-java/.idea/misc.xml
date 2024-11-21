@@ -7,6 +7,11 @@
         <option value="$PROJECT_DIR$/project/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/project/untitled/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="org.jetbrains.annotations.Nullable" />

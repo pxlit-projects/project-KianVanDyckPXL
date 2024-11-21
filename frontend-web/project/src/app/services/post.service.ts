@@ -9,7 +9,7 @@ import { Post } from '../shared/models/post.model';
   providedIn: 'root',
 })
 export class PostService {
-  api: string = 'http://localhost:8082/api/post';
+  api: string = 'http://localhost:8084/api/post';
   http: HttpClient = inject(HttpClient);
 
 
