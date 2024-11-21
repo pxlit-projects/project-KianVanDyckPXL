@@ -55,8 +55,6 @@ export class PostCreateComponent {
             });
           },
         });
-      } else {
-        console.log('Form is invalid');
       }
     }
   }

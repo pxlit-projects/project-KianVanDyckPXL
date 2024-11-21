@@ -1,24 +1,75 @@
 <div class="container mx-auto mt-5">
   <h2 class="text-2xl font-semibold mb-4">Published Posts</h2>
 
+  <!-- Filter Inputs -->
+  <div class="mb-4 grid grid-cols-1 md:grid-cols-4 gap-4">
+    <!-- Search Input -->
+    <input 
+      [(ngModel)]="searchTerm" 
+      (ngModelChange)="applyFilter()"
+      placeholder="Search posts..." 
+      class="p-2 border rounded-md"
+    >
+
+    <!-- Author Filter -->
+    <input 
+      [(ngModel)]="author" 
+      (ngModelChange)="applyFilter()"
+      placeholder="Filter by author" 
+      class="p-2 border rounded-md"
+    >
+
+    <!-- Start Date Filter -->
+    <div class="flex flex-col">
+      <label class="text-sm mb-1">From Date</label>
+      <input 
+        type="date" 
+        [(ngModel)]="startDate"
+        (ngModelChange)="applyFilter()"
+        class="p-2 border rounded-md"
+      >
+    </div>
+
+    <!-- End Date Filter -->
+    <div class="flex flex-col">
+      <label class="text-sm mb-1">To Date</label>
+      <input 
+        type="date" 
+        [(ngModel)]="endDate"
+        (ngModelChange)="applyFilter()"
+        class="p-2 border rounded-md"
+      >
+    </div>
+  </div>
+
+  <!-- Clear Filters Button -->
+  <div class="mb-4">
+    <button 
+      (click)="clearFilters()"
+      class="bg-gray-200 hover:bg-gray-300 p-2 rounded-md"
+    >
+      Clear All Filters
+    </button>
+  </div>
+
   <!-- Post List -->
   <div class="">
-
-    @for(post of posts; track post.id){
+    @for(post of filteredPosts; track post.id){
     <div class="post-card p-4 mb-4 border rounded-md shadow-sm">
       <h3 class="text-xl font-bold">{{ post.title }}</h3>
-      <p class="text-sm text-gray-600">By {{ post.author }} | {{ post.createdAt | date: 'dd/MM/yyyy hh:mm:ss'}}</p>
+      <p class="text-sm text-gray-600">
+        By {{ post.author }} | 
+        {{ post.createdAt | date: 'dd/MM/yyyy hh:mm:ss'}}
+      </p>
       <p class="mt-2">{{ post.content }}</p>
     </div>
     }
-
   </div>
 
   <!-- No posts found message -->
   <div class="text-center text-lg text-gray-600">
-    @if(posts.length === 0) {
+    @if(filteredPosts.length === 0) {
     <p>No posts found</p>
     }
-
   </div>
 </div>

@@ -1,6 +1,7 @@
 package be.pxl.services.controller.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,5 +21,7 @@ public class PostResponse {
     private String content;
     private String author;
     private LocalDateTime createdAt;
+
+    @JsonProperty("isConcept")
     private boolean isConcept;
 }

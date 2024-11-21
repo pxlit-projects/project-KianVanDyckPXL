@@ -8,6 +8,11 @@
               <h3 class="text-xl font-bold">{{ post.title }}</h3>
               <p class="text-sm text-gray-600">By {{ post.author }} | {{ post.createdAt | date: 'dd/MM/yyyy hh:mm:ss'}}</p>
               <p class="mt-2">{{ post.content }}</p>
+              <button
+              class="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded"
+              (click)="editPost(post.id)">
+              Edit
+            </button>
             </div>
             }
         
