@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    @Query("SELECT p FROM Post p WHERE p.isConcept = false")
-    List<Post> findAllByConceptIsFalse();
+    @Query("SELECT p FROM Post p WHERE p.reviewStatus = 'APPROVED' ")
+    List<Post> findAllByApprovedTrue();
 
     List<Post> findByAuthor(String author);
 }

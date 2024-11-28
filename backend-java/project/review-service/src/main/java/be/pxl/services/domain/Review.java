@@ -1,31 +1,25 @@
 package be.pxl.services.domain;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Entity
-@Table(name = "post")
+@Table(name = "review")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
+public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
-    private String title;
-    private String content;
-    private String author;
-    private LocalDateTime createdAt;
-    private boolean isConcept;
+    private Long id;
+    private Long postId;
+    private String reviewer;
     @Enumerated(EnumType.STRING)
-    private ReviewStatus reviewStatus;
+    private ReviewStatus reviewStatus = ReviewStatus.PENDING;
+    private String comment;
 }
