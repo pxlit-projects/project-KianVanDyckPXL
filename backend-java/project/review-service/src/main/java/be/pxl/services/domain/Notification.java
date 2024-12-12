@@ -1,6 +1,5 @@
 package be.pxl.services.domain;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,23 +9,17 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "post")
+@Table(name = "notification")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
+public class Notification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
-    private String title;
-    private String content;
-    private String author;
-    private LocalDateTime createdAt;
-    private boolean isConcept;
-    @Enumerated(EnumType.STRING)
-    private ReviewStatus reviewStatus;
-    private String reviewComment;
+    private Long id;
+    private String message;
+    private LocalDateTime timestamp;
+    private String receiver;
 }

@@ -1,10 +1,7 @@
 package be.pxl.services.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "review")
@@ -19,7 +16,12 @@ public class Review {
     private Long id;
     private Long postId;
     private String reviewer;
+    private String content;
+    private String author;
+    private String title;
     @Enumerated(EnumType.STRING)
     private ReviewStatus reviewStatus = ReviewStatus.PENDING;
     private String comment;
+
+
 }

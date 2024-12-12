@@ -9,13 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="comment-service" />
         <module name="post-service" />
-        <module name="messaging-service" />
         <module name="config-service" />
         <module name="review-service" />
         <module name="discovery-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="messaging-service" target="21" />
       <module name="untitled" target="21" />
     </bytecodeTargetLevel>
   </component>

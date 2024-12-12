@@ -3,6 +3,7 @@ package be.pxl.services.controller;
 
 import be.pxl.services.controller.dto.PostRequest;
 import be.pxl.services.controller.dto.PostResponse;
+import be.pxl.services.controller.dto.ReviewPostRequest;
 import be.pxl.services.domain.Post;
 import be.pxl.services.exceptions.ResourceNotFoundException;
 import be.pxl.services.service.IPostService;
@@ -63,21 +64,8 @@ public class PostController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<PostResponse>> getAllPosts() {
-        List<Post> posts = postService.getAllPosts();
-
-        // Convert list of Post entities to a list of PostResponse DTOs
-        List<PostResponse> postResponses = posts.stream()
-                .map(post -> PostResponse.builder()
-                        .id(post.getId())
-                        .title(post.getTitle())
-                        .content(post.getContent())
-                        .author(post.getAuthor())
-                        .createdAt(post.getCreatedAt())
-                        .isConcept(post.isConcept())
-                        .build())
-                .collect(Collectors.toList());
-
-        return ResponseEntity.ok(postResponses);
+        List<PostResponse> posts = postService.getAllPosts();
+        return ResponseEntity.ok(posts);
     }
 
     @GetMapping("author/{author}")
@@ -87,4 +75,9 @@ public class PostController {
     }
 
 
+    @PutMapping("/review")
+    @ResponseStatus(HttpStatus.OK)
+    public void postReview(@RequestBody ReviewPostRequest reviewPostRequest) {
+        postService.getReviewedPost(reviewPostRequest);
+    }
 }

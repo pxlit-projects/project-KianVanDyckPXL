@@ -5,5 +5,6 @@ export interface PostResponse {
     author: string;
     createdAt: string;
     isConcept: boolean;
+    reviewStatus: string;
   }
   

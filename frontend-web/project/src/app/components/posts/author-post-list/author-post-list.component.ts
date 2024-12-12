@@ -5,10 +5,12 @@ import { DatePipe } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-author-post-list',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe, CommonModule],
   templateUrl: './author-post-list.component.html',
   styleUrls: ['./author-post-list.component.css']
 })

@@ -1,26 +1,20 @@
 package be.pxl.services.controller.dto;
 
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.annotation.Nonnull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Struct;
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostRequest {
-
+public class ReviewedPostRequest {
     @Nonnull
-    private String title;
+    String reviewer;
     @Nonnull
-    private String content;
-    @Nonnull
-    private String author;
-
-    @JsonProperty("isConcept")
-    private boolean isConcept;
+    String status;
+    String comment;
 }
