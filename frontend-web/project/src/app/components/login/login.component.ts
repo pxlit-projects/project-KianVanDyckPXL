@@ -34,7 +34,7 @@ export class LoginComponent {
 
     const currentUser = this.authService.getUser();
     if (currentUser) {
-      this.router.navigate(['/add-post']); 
+      this.router.navigate(['/post-list']); 
     }
   }
 
@@ -45,7 +45,7 @@ export class LoginComponent {
       this.authService.setUser(user);
       this.login.emit(user);
 
-      this.router.navigate(['/add-post']);
+      this.router.navigate(['/post-list']);
     }
   }
 }
