@@ -55,14 +55,7 @@
   <!-- Post List -->
   <div class="">
     @for(post of filteredPosts; track post.id){
-    <div class="post-card p-4 mb-4 border rounded-md shadow-sm">
-      <h3 class="text-xl font-bold">{{ post.title }}</h3>
-      <p class="text-sm text-gray-600">
-        By {{ post.author }} | 
-        {{ post.createdAt | date: 'dd/MM/yyyy hh:mm:ss'}}
-      </p>
-      <p class="mt-2">{{ post.content }}</p>
-    </div>
+      <app-post-card [post]="post"></app-post-card>
     }
   </div>
 

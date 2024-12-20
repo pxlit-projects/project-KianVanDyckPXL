@@ -1,0 +1,9 @@
+<div 
+  class="post-card p-4 mb-4 border rounded-md shadow-sm cursor-pointer" 
+  (click)="navigateToPost()">
+  <h3 class="text-xl font-bold">{{ post.title }}</h3>
+  <p class="text-sm text-gray-600">
+    By {{ post.author }} | 
+    {{ post.createdAt }}
+  </p>
+</div>

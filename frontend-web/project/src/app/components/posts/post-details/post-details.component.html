@@ -1,0 +1,51 @@
+<div *ngIf="post" class="max-w-3xl mx-auto mt-8 px-6 pt-6 border rounded-md shadow-md">
+  <!-- Post Header -->
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="text-3xl font-bold">{{ post.title }}</h1>
+    <p class="text-gray-500 text-sm">{{ post.createdAt | date: 'dd/MM/yyyy hh:mm:ss' }}</p>
+  </div>
+
+
+  <p class="text-gray-500 text-sm mb-6">By {{ post.author }}</p>
+
+
+  <h2 class="text-xl font-semibold mb-4">Content</h2>
+  <div class="prose max-w-none">
+    <p>{{ post.content }}</p>
+  </div>
+</div>
+
+
+
+
+<div class="max-w-3xl mx-auto mt-12">
+  <h1 class="text-2xl font-bold mb-6">Comments</h1>
+
+
+  <div class="max-w-3xl mx-auto mt-8">
+    <h2 class="text-xl font-semibold mb-4 text-gray-900">Add Your Comment</h2>
+  
+    <form [formGroup]="commentForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div>
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Comment</mat-label>
+          <textarea matInput formControlName="comment" placeholder="Enter your comment here" rows="4" class="resize-none"></textarea>
+          <mat-error *ngIf="commentForm.get('comment')?.touched && commentForm.get('comment')?.hasError('required')" class="text-red-500">
+            Content is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div class="flex justify-end">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!commentForm.valid" class="w-full sm:w-auto">
+          Add Comment
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngFor="let comment of comments" class="mb-6 px-6 pt-4 pb-4 border rounded-md shadow-sm">
+    <app-comment [comment]="comment" (updated)="loadComments(postId!)"></app-comment>
+  </div>
+</div>
+

@@ -5,9 +5,11 @@ import { PostListComponent } from './components/posts/post-list/post-list.compon
 import { AuthorPostListComponent } from './components/posts/author-post-list/author-post-list.component';
 import { EditPostComponent } from './components/posts/edit-post/edit-post.component';
 import { AuthorAuthGuardService } from './services/author-auth-guard.service';
+import { PostDetailsComponent } from './components/posts/post-details/post-details.component';
 export const routes: Routes = [
     {path: 'author-list', component: AuthorPostListComponent, canActivate: [AuthorAuthGuardService]},
     {path: 'post-list', component: PostListComponent, },
+    {path: 'post/:id', component: PostDetailsComponent, },
     {path: 'add-post', component: PostCreateComponent, canActivate: [AuthorAuthGuardService]},
     { path: 'edit-post/:id', component: EditPostComponent, canActivate: [AuthorAuthGuardService]},
     {path: 'login', component: LoginComponent},

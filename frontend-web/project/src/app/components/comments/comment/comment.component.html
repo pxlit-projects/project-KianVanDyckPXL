@@ -1,0 +1,39 @@
+<div class="mb-6 px-6 pt-4 pb-4 border rounded-md shadow-sm bg-gray-50">
+    <!-- View Mode -->
+    <div *ngIf="!editMode">
+      <h2 class="text-lg font-semibold">{{ comment.author }}</h2>
+      <p class="text-gray-500 text-sm mt-1">{{ comment.comment }}</p>
+  
+      <!-- Show edit button if it's the user's comment -->
+      <div *ngIf="getUser() === comment.author" class="mt-4">
+        <button mat-raised-button color="primary" (click)="toggleEditMode()">Edit</button>
+      </div>
+    </div>
+  
+    <!-- Edit Mode -->
+    <div *ngIf="editMode" class="space-y-4">
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Comment</mat-label>
+            <textarea
+              matInput
+              formControlName="comment"
+              placeholder="Edit the content of this comment"
+              rows="5"
+            ></textarea>
+            <mat-error *ngIf="editForm.get('comment')?.touched && editForm.get('comment')?.hasError('required')">
+              Content is required
+            </mat-error>
+          </mat-form-field>
+  
+      <div class="flex space-x-4 justify-end">
+        <button mat-stroked-button color="warn" (click)="toggleEditMode()">Cancel</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!editForm.valid">
+    Save Changes
+  </button>
+      </div>
+    </form>
+    </div>
+    
+  </div>
+  
