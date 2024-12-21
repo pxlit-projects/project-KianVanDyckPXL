@@ -1,9 +1,10 @@
 
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
 import { CommentResponse } from '../shared/models/commentResponse.model';
 import { Comment } from '../shared/models/comment.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,24 @@ export class CommentServiceService {
 
   api: string = 'http://localhost:8082/api/comment';
   http: HttpClient = inject(HttpClient);
+  authService: AuthService = inject(AuthService);
 
+  private getHeaders(): HttpHeaders {
+    const user = this.authService.getUser();
+    const roleHeader = user ? user.role : 'GUEST';
+    return new HttpHeaders({
+      'Role': roleHeader
+    });
+  }
 
   getAllCommentsByPost(postId : number): Observable<CommentResponse[]> {
-    return this.http.get<CommentResponse[]>(`${this.api}/${postId}`);
+    const headers = this.getHeaders();
+    return this.http.get<CommentResponse[]>(`${this.api}/${postId}`, { headers });
   }
 
   addComment(comment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(this.api, comment).pipe(
+    const headers = this.getHeaders();
+    return this.http.post<Comment>(this.api, comment, { headers }).pipe(
       catchError((error) => {
         throw error;
       })
@@ -27,7 +38,8 @@ export class CommentServiceService {
   }
 
   updateComment(commentId: number, updatedComment: string): Observable<void> {
-    return this.http.put<void>(`${this.api}/${commentId}`, { comment: updatedComment }).pipe(
+    const headers = this.getHeaders();
+    return this.http.put<void>(`${this.api}/${commentId}`, { comment: updatedComment }, { headers }).pipe(
       catchError((error) => {
         throw error;
       })
@@ -36,7 +48,8 @@ export class CommentServiceService {
 
 
   deleteComment(commentId: number): Observable<void> {
-    return this.http.delete<void>(`${this.api}/${commentId}`).pipe(
+    const headers = this.getHeaders();
+    return this.http.delete<void>(`${this.api}/${commentId}`,  { headers }).pipe(
       catchError((error) => {
         throw error;
       })

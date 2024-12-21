@@ -23,11 +23,22 @@ public class PostController {
 
     private final IPostService postService;
 
+    private void validateRole(String role, String... allowedRoles) {
+        for (String allowedRole : allowedRoles) {
+            if (allowedRole.equalsIgnoreCase(role)) {
+                return;
+            }
+        }
+        throw new SecurityException("Access Denied: Insufficient permissions");
+    }
+
+
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void addPost(@RequestBody PostRequest post) {
-
+    public void addPost(@RequestHeader("Role") String role, @RequestBody PostRequest post) {
+        validateRole(role, "ADMIN", "EDITOR");
         postService.addPost(post);
     }
 
@@ -35,8 +46,10 @@ public class PostController {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public void updatePost(
+            @RequestHeader("Role") String role,
             @PathVariable Long id,
             @RequestBody PostRequest postRequest) throws ResourceNotFoundException {
+        validateRole(role, "ADMIN", "EDITOR");
         postService.updatePost(id, postRequest);
 
     }
@@ -44,7 +57,8 @@ public class PostController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<PostResponse> getPost(@PathVariable Long id) throws ResourceNotFoundException {
+    public ResponseEntity<PostResponse> getPost(@RequestHeader("Role") String role, @PathVariable Long id) throws ResourceNotFoundException {
+        validateRole(role, "ADMIN", "EDITOR", "USER");
 
         Post post = postService.getPostById(id);
 
@@ -63,13 +77,15 @@ public class PostController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<PostResponse>> getAllPosts() {
+    public ResponseEntity<List<PostResponse>> getAllPosts(@RequestHeader("Role") String role) {
+        validateRole(role, "ADMIN", "EDITOR", "USER");
         List<PostResponse> posts = postService.getAllPosts();
         return ResponseEntity.ok(posts);
     }
 
     @GetMapping("author/{author}")
-    public ResponseEntity<List<PostResponse>> getPostsByAuthor(@PathVariable String author) {
+    public ResponseEntity<List<PostResponse>> getPostsByAuthor(@RequestHeader("Role") String role, @PathVariable String author) {
+        validateRole(role, "ADMIN", "EDITOR");
         List<PostResponse> posts = postService.getPostsByAuthor(author);
         return ResponseEntity.ok(posts);
     }
@@ -78,6 +94,7 @@ public class PostController {
     @PutMapping("/review")
     @ResponseStatus(HttpStatus.OK)
     public void postReview(@RequestBody ReviewPostRequest reviewPostRequest) {
+
         postService.getReviewedPost(reviewPostRequest);
     }
 }

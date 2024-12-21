@@ -13,6 +13,7 @@ import { AuthService } from '../../../services/auth.service';
 import { Comment } from '../../../shared/models/comment.model';
 import { CommentComponent } from "../../comments/comment/comment.component";
 import { MatButtonModule } from '@angular/material/button';
+import { Post } from '../../../shared/models/post.model';
 
 @Component({
   selector: 'app-post-details',

@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
 import { PostResponse } from '../shared/models/postResponse.model';
 import { Post } from '../shared/models/post.model';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -12,9 +13,20 @@ export class PostService {
   api: string = 'http://localhost:8084/api/post';
   http: HttpClient = inject(HttpClient);
 
+  authService: AuthService = inject(AuthService);
+
+  private getHeaders(): HttpHeaders {
+    const user = this.authService.getUser();
+    const roleHeader = user ? user.role : 'GUEST';
+    return new HttpHeaders({
+      'Role': roleHeader
+    });
+  }
+
 
   addPost(post: Post): Observable<Post> {
-    return this.http.post<Post>(this.api, post).pipe(
+    const headers = this.getHeaders();
+    return this.http.post<Post>(this.api, post, {headers}).pipe(
       catchError((error) => {
         throw error;
       })
@@ -22,20 +34,27 @@ export class PostService {
   }
 
   getAllPublishedPosts(): Observable<PostResponse[]> {
-    return this.http.get<PostResponse[]>(this.api);
+    console.log("Getting all published posts");
+    
+    const headers = this.getHeaders();
+    console.log('Headers:', headers); 
+    return this.http.get<PostResponse[]>(this.api, {headers});
   }
 
   getPostsByAuthor(author: string): Observable<PostResponse[]> {
-    return this.http.get<PostResponse[]>(`${this.api}/author/${author}`);
+    const headers = this.getHeaders();
+    return this.http.get<PostResponse[]>(`${this.api}/author/${author}`, {headers});
   }
 
   getPostById(id: number): Observable<PostResponse> {
-    return this.http.get<PostResponse>(`${this.api}/${id}`);
+    const headers = this.getHeaders();
+    return this.http.get<PostResponse>(`${this.api}/${id}`, {headers});
   }
 
 
   updatePost(id: number,post: Post): Observable<Post> {
-    return this.http.put<Post>(`${this.api}/${id}`, post).pipe(
+    const headers = this.getHeaders();
+    return this.http.put<Post>(`${this.api}/${id}`, post, {headers}).pipe(
       catchError((error) => {
         throw error;
       })
