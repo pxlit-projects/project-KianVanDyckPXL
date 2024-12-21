@@ -1,0 +1,26 @@
+<h2 class="text-lg font-semibold text-gray-800">{{ review.title }}</h2>
+<span class="text-sm text-gray-500">by {{ review.author }}</span>
+<p class="mt-4 text-gray-700">{{ review.description }}</p>
+
+<div class="flex items-center mt-4 space-x-2">
+
+  <button mat-raised-button class="green-button" (click)="submitReview('APPROVED')">
+    Accept post
+  </button>
+
+  <!-- Deny button to trigger comment form -->
+  <button mat-raised-button color="warn" (click)="toggleDenyMode()">
+    Deny post
+  </button>
+</div>
+
+<!-- Show comment form when denyMode is true -->
+<div *ngIf="denyMode" class="mt-4">
+  <form [formGroup]="reviewForm" (ngSubmit)="submitReview('REJECTED')">
+    <textarea formControlName="comment" rows="4" class="w-full p-2 border rounded-md"></textarea>
+    <div class="mt-2">
+      <button mat-raised-button color="primary" type="submit" class="mr-2">Submit Comment</button>
+      <button mat-raised-button color="accent" type="button" (click)="denyMode = false">Cancel</button>
+    </div>
+  </form>
+</div>

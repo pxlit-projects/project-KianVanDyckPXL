@@ -5,28 +5,25 @@ import { CommonModule } from '@angular/common';
 import { DatePipe } from '@angular/common';
 import { CommentServiceService } from '../../../services/comment-service.service';
 import { CommentResponse } from '../../../shared/models/commentResponse.model';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Post } from '../../../shared/models/post.model';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../../../services/auth.service';
 import { Comment } from '../../../shared/models/comment.model';
 import { CommentComponent } from "../../comments/comment/comment.component";
-
-
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-post-details',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, DatePipe, CommentComponent],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, DatePipe, CommentComponent, MatButtonModule],
   templateUrl: './post-details.component.html',
-  styleUrl: './post-details.component.css'
+  styleUrls: ['./post-details.component.css']
 })
 export class PostDetailsComponent {
   postId!: string | null;
-  post: any;
+  post: Post | null = null;
   comments: CommentResponse[] = [];
   errorMessage: string | null = null;
 
@@ -44,20 +41,15 @@ export class PostDetailsComponent {
     private router: Router,
     private route: ActivatedRoute,
     private postService: PostService,
-    private CommentService : CommentServiceService
-  ) {
-  }
+    private commentService: CommentServiceService
+  ) {}
 
   ngOnInit(): void {
     this.postId = this.route.snapshot.paramMap.get('id');
-
     if (this.postId) {
-
-      this.loadPost(this.postId)
-      this.loadComments(this.postId)
-
+      this.loadPost(this.postId);
+      this.loadComments(this.postId);
     } else {
-
       this.router.navigate(['/']);
     }
   }
@@ -75,33 +67,32 @@ export class PostDetailsComponent {
   }
 
   loadComments(postId: string): void {
-    this.CommentService.getAllCommentsByPost(+postId).subscribe({
+    this.commentService.getAllCommentsByPost(+postId).subscribe({
       next: (data) => {
         this.comments = data;
       },
       error: (err) => {
-        console.error('Error fetching posts:', err);
+        console.error('Error fetching comments:', err);
       }
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.commentForm.valid) {
       const commentData = this.commentForm.value;
-      const author = this.authService.getUser()?.name
+      const author = this.authService.getUser()?.name;
 
       if (author && this.postId) {
-        const comment: Comment = new Comment( commentData.comment , author, this.postId);
-        this.CommentService.addComment(comment).subscribe({
-          next: (response) => {
-            this.loadComments(this.postId!)
+        const comment: Comment = new Comment(commentData.comment, author, this.postId);
+        this.commentService.addComment(comment).subscribe({
+          next: () => {
+            this.loadComments(this.postId!);
             this._snackBar.open('Comment created successfully!', 'Close', {
-              duration: this.durationInSeconds * 1000, 
+              duration: this.durationInSeconds * 1000,
             });
-
           },
-          error: (error) => {
-            this._snackBar.open('Failed to create Comment. Please try again.', 'Close', {
+          error: () => {
+            this._snackBar.open('Failed to create comment. Please try again.', 'Close', {
               duration: this.durationInSeconds * 1000,
             });
           },
@@ -109,6 +100,8 @@ export class PostDetailsComponent {
       }
     }
   }
+
+  removeComment(commentId: number): void {
+    this.comments = this.comments.filter(comment => comment.id !== commentId);
+  }
 }
-
-

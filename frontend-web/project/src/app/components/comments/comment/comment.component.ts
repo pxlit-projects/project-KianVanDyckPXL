@@ -7,11 +7,13 @@ import { AuthService } from '../../../services/auth.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-comment',
   standalone: true,
-  imports: [MatFormFieldModule, CommonModule, MatInputModule, FormsModule, ReactiveFormsModule],
+  imports: [MatFormFieldModule, CommonModule, MatInputModule, FormsModule, ReactiveFormsModule, MatButtonModule, MatIconModule],
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css'], // Fixed styleUrls typo
 })
@@ -19,6 +21,8 @@ export class CommentComponent {
   @Input() comment!: CommentResponse;
   editMode = false;
   editForm: FormGroup;
+  @Output() commentDeleted = new EventEmitter<number>(); 
+
 
   constructor(
     private fb: FormBuilder,
@@ -72,5 +76,22 @@ export class CommentComponent {
         },
       });
     }
+  }
+
+  deleteComment() {
+    this.commentService.deleteComment(this.comment.id).subscribe({
+      next: () => {
+        this.snackBar.open('Comment deleted successfully!', 'Close', {
+          duration: 3000,
+        });
+
+        this.commentDeleted.emit(this.comment.id); // Emit the comment ID
+      },
+      error: () => {
+        this.snackBar.open('Failed to delete comment.', 'Close', {
+          duration: 3000,
+        });
+      },
+    });
   }
 }

@@ -2,8 +2,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
-import { PostResponse } from '../shared/models/postResponse.model';
-import { Post } from '../shared/models/post.model';
 import { CommentResponse } from '../shared/models/commentResponse.model';
 import { Comment } from '../shared/models/comment.model';
 
@@ -30,6 +28,15 @@ export class CommentServiceService {
 
   updateComment(commentId: number, updatedComment: string): Observable<void> {
     return this.http.put<void>(`${this.api}/${commentId}`, { comment: updatedComment }).pipe(
+      catchError((error) => {
+        throw error;
+      })
+    );
+  }
+
+
+  deleteComment(commentId: number): Observable<void> {
+    return this.http.delete<void>(`${this.api}/${commentId}`).pipe(
       catchError((error) => {
         throw error;
       })

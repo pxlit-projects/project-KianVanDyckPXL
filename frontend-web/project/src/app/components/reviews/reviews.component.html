@@ -1,0 +1,5 @@
+<div *ngFor="let review of reviews" class="mb-6 px-6 py-4 border rounded-md shadow-sm bg-white">
+
+<app-review [review]="review" (reviewSubmitted)="removeReview($event)"></app-review>
+</div>
+  

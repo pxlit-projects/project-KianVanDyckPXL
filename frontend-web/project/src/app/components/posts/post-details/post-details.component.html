@@ -23,9 +23,9 @@
 
 
   <div class="max-w-3xl mx-auto mt-8">
-    <h2 class="text-xl font-semibold mb-4 text-gray-900">Add Your Comment</h2>
+    <h2 class="text-xl font-semibold  text-gray-900">Add Your Comment</h2>
   
-    <form [formGroup]="commentForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
       <div>
         <mat-form-field appearance="fill" class="w-full">
           <mat-label>Comment</mat-label>
@@ -36,7 +36,7 @@
         </mat-form-field>
       </div>
   
-      <div class="flex justify-end">
+      <div class="flex justify-end pb-8">
         <button mat-raised-button color="primary" type="submit" [disabled]="!commentForm.valid" class="w-full sm:w-auto">
           Add Comment
         </button>
@@ -45,7 +45,7 @@
   </div>
 
   <div *ngFor="let comment of comments" class="mb-6 px-6 pt-4 pb-4 border rounded-md shadow-sm">
-    <app-comment [comment]="comment" (updated)="loadComments(postId!)"></app-comment>
+    <app-comment [comment]="comment" (updated)="loadComments(postId!)"   (commentDeleted)="removeComment($event)"></app-comment>
   </div>
 </div>
 

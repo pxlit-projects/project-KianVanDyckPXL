@@ -6,5 +6,6 @@ export interface PostResponse {
     createdAt: string;
     isConcept: boolean;
     reviewStatus: string;
+    comment: string
   }
   

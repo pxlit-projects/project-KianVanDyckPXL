@@ -3,12 +3,16 @@
     <div *ngIf="!editMode">
       <h2 class="text-lg font-semibold">{{ comment.author }}</h2>
       <p class="text-gray-500 text-sm mt-1">{{ comment.comment }}</p>
-  
+    
       <!-- Show edit button if it's the user's comment -->
-      <div *ngIf="getUser() === comment.author" class="mt-4">
+      <div class="flex justify-between items-center mt-4" *ngIf="getUser() === comment.author">
         <button mat-raised-button color="primary" (click)="toggleEditMode()">Edit</button>
+        <button mat-fab aria-label="Delete comment" (click)="deleteComment()" color="primary" >
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
     </div>
+    
   
     <!-- Edit Mode -->
     <div *ngIf="editMode" class="space-y-4">
@@ -31,9 +35,11 @@
   <button mat-raised-button color="primary" type="submit" [disabled]="!editForm.valid">
     Save Changes
   </button>
+
       </div>
     </form>
     </div>
-    
+
+
   </div>
   

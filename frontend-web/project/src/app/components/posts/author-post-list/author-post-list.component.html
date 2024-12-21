@@ -19,6 +19,10 @@
                  }">
                  Status: {{ post.reviewStatus || 'No Status' }}
               </p>
+              <div *ngIf="post.comment != null">
+                <h2>Reviewers comment</h2>
+                <p class="mt-2">{{ post.comment }}</p>
+              </div>
 
               <!-- Conditionally Render Edit Button -->
               @if(post.reviewStatus === 'REJECTED' || post.reviewStatus === null) {
