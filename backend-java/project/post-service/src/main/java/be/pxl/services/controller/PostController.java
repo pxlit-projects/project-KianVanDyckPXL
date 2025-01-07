@@ -51,12 +51,10 @@ public class PostController {
             @RequestBody PostRequest postRequest) throws ResourceNotFoundException {
         validateRole(role, "ADMIN", "EDITOR");
         postService.updatePost(id, postRequest);
-
     }
 
 
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<PostResponse> getPost(@RequestHeader("Role") String role, @PathVariable Long id) throws ResourceNotFoundException {
         validateRole(role, "ADMIN", "EDITOR", "USER");
 
@@ -76,7 +74,6 @@ public class PostController {
 
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<PostResponse>> getAllPosts(@RequestHeader("Role") String role) {
         validateRole(role, "ADMIN", "EDITOR", "USER");
         List<PostResponse> posts = postService.getAllPosts();
@@ -94,7 +91,6 @@ public class PostController {
     @PutMapping("/review")
     @ResponseStatus(HttpStatus.OK)
     public void postReview(@RequestBody ReviewPostRequest reviewPostRequest) {
-
         postService.getReviewedPost(reviewPostRequest);
     }
 }

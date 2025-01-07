@@ -14,6 +14,7 @@ import { Comment } from '../../../shared/models/comment.model';
 import { CommentComponent } from "../../comments/comment/comment.component";
 import { MatButtonModule } from '@angular/material/button';
 import { Post } from '../../../shared/models/post.model';
+import { PostResponse } from '../../../shared/models/postResponse.model';
 
 @Component({
   selector: 'app-post-details',
@@ -24,7 +25,7 @@ import { Post } from '../../../shared/models/post.model';
 })
 export class PostDetailsComponent {
   postId!: string | null;
-  post: Post | null = null;
+  post: PostResponse | null = null;
   comments: CommentResponse[] = [];
   errorMessage: string | null = null;
 

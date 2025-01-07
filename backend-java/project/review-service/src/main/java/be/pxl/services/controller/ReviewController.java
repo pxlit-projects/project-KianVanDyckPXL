@@ -32,7 +32,10 @@ public class ReviewController {
         try {
             validateRole(role);
             return new ResponseEntity<>(reviewService.getAllReviews(), HttpStatus.OK);
-        } catch (Exception e){
+        }catch (SecurityException e) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+        catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -44,6 +47,9 @@ public class ReviewController {
             return new ResponseEntity<>(reviewService.updateReview(id, reviewedPostRequest), HttpStatus.OK);
         }catch (ResourceNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (SecurityException e){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
