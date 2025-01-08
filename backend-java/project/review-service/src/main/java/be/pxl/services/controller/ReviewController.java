@@ -5,6 +5,8 @@ import be.pxl.services.controller.dto.ReviewedPostRequest;
 import be.pxl.services.domain.Review;
 import be.pxl.services.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ import java.util.List;
 public class ReviewController {
 
     private final IReviewService reviewService;
+    private static final Logger log = LoggerFactory.getLogger(ReviewController.class);
 
     private void validateRole(String role) {
         if (!"ADMIN".equalsIgnoreCase(role) && !"EDITOR".equalsIgnoreCase(role)) {
@@ -31,7 +34,9 @@ public class ReviewController {
 
         try {
             validateRole(role);
-            return new ResponseEntity<>(reviewService.getAllReviews(), HttpStatus.OK);
+            List<ReviewResponse> responses = reviewService.getAllReviews();
+            log.info("a person got all the reviews: {}", responses);
+            return new ResponseEntity<>(responses, HttpStatus.OK);
         }catch (SecurityException e) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
@@ -44,7 +49,9 @@ public class ReviewController {
     public ResponseEntity<Review> addReview(@RequestHeader("Role") String role, @PathVariable Long id, @RequestBody ReviewedPostRequest reviewedPostRequest) {
         try {
             validateRole(role);
-            return new ResponseEntity<>(reviewService.updateReview(id, reviewedPostRequest), HttpStatus.OK);
+            Review updatedReview = reviewService.updateReview(id, reviewedPostRequest);
+            log.info("a person updated a review: {}", updatedReview);
+            return new ResponseEntity<>(updatedReview, HttpStatus.OK);
         }catch (ResourceNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
