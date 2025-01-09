@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 })
 export class ReviewService {
 
-  api: string = 'http://localhost:8083/api/reviews';
+  api: string = 'http://localhost:8093/review/api/reviews';
   http: HttpClient = inject(HttpClient);
   
   authService: AuthService = inject(AuthService);

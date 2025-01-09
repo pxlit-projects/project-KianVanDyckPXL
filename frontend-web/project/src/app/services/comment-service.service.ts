@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 })
 export class CommentServiceService {
 
-  api: string = 'http://localhost:8082/api/comment';
+  api: string = 'http://localhost:8093/comment/api/comment';
   http: HttpClient = inject(HttpClient);
   authService: AuthService = inject(AuthService);
 

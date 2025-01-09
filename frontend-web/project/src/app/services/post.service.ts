@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class PostService {
-  api: string = 'http://localhost:8084/api/post';
+  api: string = 'http://localhost:8093/post/api/post';
   http: HttpClient = inject(HttpClient);
 
   authService: AuthService = inject(AuthService);
