@@ -34,10 +34,8 @@ export class PostService {
   }
 
   getAllPublishedPosts(): Observable<PostResponse[]> {
-    console.log("Getting all published posts");
-    
     const headers = this.getHeaders();
-    console.log('Headers:', headers); 
+
     return this.http.get<PostResponse[]>(this.api, {headers});
   }
 

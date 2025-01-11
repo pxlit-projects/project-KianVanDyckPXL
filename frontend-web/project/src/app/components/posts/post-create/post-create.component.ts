@@ -19,43 +19,55 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrl: './post-create.component.css'
 })
 export class PostCreateComponent {
-
   private _snackBar = inject(MatSnackBar);
-  durationInSeconds = 2;
+  private authService = inject(AuthService);
+  private postService = inject(PostService);
 
-  fb: FormBuilder = inject(FormBuilder);
-  @Output() post = new EventEmitter<Post>();
+  @Output() postCreated = new EventEmitter<Post>();
 
-  postForm: FormGroup = this.fb.group({
-    title: ['', Validators.required],
-    content: ['', [Validators.required]],
-    conceptCheckbox: [false]
-  });
+  // Model for the form
+  model = {
+    title: '',
+    content: '',
+    conceptCheckbox: false
+  };
 
-  authService: AuthService = inject(AuthService);
-  postService: PostService = inject(PostService);
-
-
-  onSubmit() {
-    if (this.postForm.valid) {
-      const postData = this.postForm.value;
-      const author = this.authService.getUser()?.name
+  onSubmit(form: any) {
+    if (form.valid) {
+      const author = this.authService.getUser()?.name;
 
       if (author) {
-        const post: Post = new Post(postData.title, postData.content, author, postData.conceptCheckbox);
-        this.postService.addPost(post).subscribe({
+        const newPost = new Post(
+          this.model.title,
+          this.model.content,
+          author,
+          this.model.conceptCheckbox
+        );
+
+        this.postService.addPost(newPost).subscribe({
           next: (response) => {
             this._snackBar.open('Post created successfully!', 'Close', {
-              duration: this.durationInSeconds * 1000, // duration in milliseconds
+              duration: 2000,
             });
+            this.postCreated.emit(newPost);
+            this.resetForm(form);
           },
           error: (error) => {
             this._snackBar.open('Failed to create post. Please try again.', 'Close', {
-              duration: this.durationInSeconds * 1000,
+              duration: 2000,
             });
           },
         });
       }
     }
+  }
+
+  private resetForm(form: any) {
+    this.model = {
+      title: '',
+      content: '',
+      conceptCheckbox: false
+    };
+    form.resetForm();
   }
 }

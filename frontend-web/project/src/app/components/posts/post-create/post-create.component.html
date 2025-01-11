@@ -1,33 +1,49 @@
 <h2 class="">add post</h2>
 
-<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+<form #postForm="ngForm" (ngSubmit)="onSubmit(postForm)" class="post-form">
     <div>
-        <mat-form-field appearance="fill">
-            <mat-label>Title</mat-label>
-            <input matInput formControlName="title" placeholder="Enter your post title">
-            <mat-error *ngIf="postForm.get('title')?.touched && postForm.get('title')?.hasError('required')">
-                title is required
-            </mat-error>
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field appearance="fill">
-            <mat-label>content</mat-label>
-            <textarea matInput formControlName="content" placeholder="Enter the content of this post"></textarea>
-            <mat-error *ngIf="postForm.get('content')?.touched && postForm.get('content')?.hasError('required')">
-                content is required
-            </mat-error>
-        </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput
+               name="title"
+               [(ngModel)]="model.title"
+               #title="ngModel"
+               required
+               placeholder="Enter your post title">
+        <mat-error *ngIf="title.invalid && (title.dirty || title.touched)">
+          <span *ngIf="title.errors?.['required']">Title is required</span>
+        </mat-error>
+      </mat-form-field>
     </div>
 
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Content</mat-label>
+        <textarea matInput
+                  name="content"
+                  [(ngModel)]="model.content"
+                  #content="ngModel"
+                  required
+                  placeholder="Enter the content of this post"></textarea>
+        <mat-error *ngIf="content.invalid && (content.dirty || content.touched)">
+          <span *ngIf="content.errors?.['required']">Content is required</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
 
     <div>
-        <mat-checkbox formControlName="conceptCheckbox">
-            Post as Concept
-        </mat-checkbox>
+      <mat-checkbox 
+        name="conceptCheckbox"
+        [(ngModel)]="model.conceptCheckbox"
+        #concept="ngModel">
+        Post as Concept
+      </mat-checkbox>
     </div>
-    
-    <button mat-raised-button color="primary" type="submit" [disabled]="!postForm.valid">
-        add post
+
+    <button mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!postForm.form.valid">
+      Add Post
     </button>
-</form>
+  </form>

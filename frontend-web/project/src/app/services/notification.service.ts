@@ -7,7 +7,7 @@ import { Notification } from '../shared/models/notification.model';
   providedIn: 'root'
 })
 export class NotificationService {
-  api: string = 'http://localhost:8083/api/notifications';
+  api: string = 'http://localhost:8093/review/api/notifications';
   http: HttpClient = inject(HttpClient);
 
   getNotifications(author: string): Observable<Notification[]> {
