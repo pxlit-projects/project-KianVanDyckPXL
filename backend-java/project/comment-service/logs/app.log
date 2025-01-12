@@ -1,0 +1,60 @@
+2025-01-12T20:28:24.735+0100 INFO               [main]                         be.pxl.services.controller.CommentControllerTest - Starting CommentControllerTest using Java 21.0.5 with PID 35016 (started by jorge in C:\Users\jorge\Documents\GitHub\project-KianVanDyckPXL\backend-java\project\comment-service)
+2025-01-12T20:28:24.735+0100 DEBUG              [main]                         be.pxl.services.controller.CommentControllerTest - Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T20:28:24.736+0100 INFO               [main]                         be.pxl.services.controller.CommentControllerTest - No active profile set, falling back to 1 default profile: "default"
+2025-01-12T20:28:25.622+0100 INFO               [main]                         be.pxl.services.controller.CommentControllerTest - Started CommentControllerTest in 1.59 seconds (process running for 3.444)
+2025-01-12T20:28:25.694+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Deleting comment: 1
+2025-01-12T20:28:25.714+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Getting comments for postId: 1
+2025-01-12T20:28:25.781+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Adding comment: CommentRequest(comment=New Comment, postId=1, author=author)
+2025-01-12T20:28:25.796+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Updating comment: UpdateCommentRequest(comment=Updated Comment)
+2025-01-12T20:32:08.000+0100 INFO               [main]                         be.pxl.services.CommentTests  - Starting CommentTests using Java 21.0.5 with PID 33856 (started by jorge in C:\Users\jorge\Documents\GitHub\project-KianVanDyckPXL\backend-java\project\comment-service)
+2025-01-12T20:32:08.001+0100 DEBUG              [main]                         be.pxl.services.CommentTests  - Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T20:32:08.002+0100 INFO               [main]                         be.pxl.services.CommentTests  - No active profile set, falling back to 1 default profile: "default"
+2025-01-12T20:32:12.096+0100 INFO               [main]                         be.pxl.services.CommentTests  - Started CommentTests in 4.71 seconds (process running for 15.403)
+2025-01-12T20:32:12.349+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Deleting comment: 1
+2025-01-12T20:32:12.394+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Getting comments for postId: 1
+2025-01-12T20:32:12.481+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Updating comment: UpdateCommentRequest(comment=Updated comment content)
+2025-01-12T20:32:12.505+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Adding comment: CommentRequest(comment=This is a new comment, postId=1, author=User)
+2025-01-12T20:33:23.816+0100 INFO               [main]                         be.pxl.services.CommentTests  - Starting CommentTests using Java 21.0.5 with PID 32956 (started by jorge in C:\Users\jorge\Documents\GitHub\project-KianVanDyckPXL\backend-java\project\comment-service)
+2025-01-12T20:33:23.817+0100 DEBUG              [main]                         be.pxl.services.CommentTests  - Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T20:33:23.817+0100 INFO               [main]                         be.pxl.services.CommentTests  - No active profile set, falling back to 1 default profile: "default"
+2025-01-12T20:33:27.800+0100 INFO               [main]                         be.pxl.services.CommentTests  - Started CommentTests in 4.607 seconds (process running for 15.278)
+2025-01-12T20:33:28.043+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Deleting comment: 1
+2025-01-12T20:33:28.092+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Getting comments for postId: 1
+2025-01-12T20:33:28.138+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Updating comment: UpdateCommentRequest(comment=Updated comment content)
+2025-01-12T20:33:28.171+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Adding comment: CommentRequest(comment=This is a new comment, postId=1, author=User)
+2025-01-12T20:35:19.122+0100 INFO               [main]                         be.pxl.services.CommentTests  - Starting CommentTests using Java 21.0.5 with PID 16752 (started by jorge in C:\Users\jorge\Documents\GitHub\project-KianVanDyckPXL\backend-java\project\comment-service)
+2025-01-12T20:35:19.123+0100 DEBUG              [main]                         be.pxl.services.CommentTests  - Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T20:35:19.123+0100 INFO               [main]                         be.pxl.services.CommentTests  - No active profile set, falling back to 1 default profile: "default"
+2025-01-12T20:35:23.137+0100 INFO               [main]                         be.pxl.services.CommentTests  - Started CommentTests in 4.73 seconds (process running for 15.651)
+2025-01-12T20:35:23.366+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Deleting comment: 1
+2025-01-12T20:35:23.406+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Getting comments for postId: 1
+2025-01-12T20:35:23.452+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Updating comment: UpdateCommentRequest(comment=Updated comment content)
+2025-01-12T20:35:23.485+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Adding comment: CommentRequest(comment=This is a new comment, postId=1, author=User)
+2025-01-12T20:37:43.423+0100 INFO               [main]                         be.pxl.services.CommentTests  - Starting CommentTests using Java 21.0.5 with PID 22132 (started by jorge in C:\Users\jorge\Documents\GitHub\project-KianVanDyckPXL\backend-java\project\comment-service)
+2025-01-12T20:37:43.423+0100 DEBUG              [main]                         be.pxl.services.CommentTests  - Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T20:37:43.424+0100 INFO               [main]                         be.pxl.services.CommentTests  - No active profile set, falling back to 1 default profile: "default"
+2025-01-12T20:37:47.401+0100 INFO               [main]                         be.pxl.services.CommentTests  - Started CommentTests in 4.606 seconds (process running for 15.428)
+2025-01-12T20:37:47.636+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Updating comment: UpdateCommentRequest(comment=Updated comment content)
+2025-01-12T20:38:23.061+0100 INFO               [main]                         be.pxl.services.CommentTests  - Starting CommentTests using Java 21.0.5 with PID 2116 (started by jorge in C:\Users\jorge\Documents\GitHub\project-KianVanDyckPXL\backend-java\project\comment-service)
+2025-01-12T20:38:23.062+0100 DEBUG              [main]                         be.pxl.services.CommentTests  - Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T20:38:23.063+0100 INFO               [main]                         be.pxl.services.CommentTests  - No active profile set, falling back to 1 default profile: "default"
+2025-01-12T20:38:27.038+0100 INFO               [main]                         be.pxl.services.CommentTests  - Started CommentTests in 4.594 seconds (process running for 15.455)
+2025-01-12T20:39:17.623+0100 INFO               [main]                         be.pxl.services.CommentTests  - Starting CommentTests using Java 21.0.5 with PID 16188 (started by jorge in C:\Users\jorge\Documents\GitHub\project-KianVanDyckPXL\backend-java\project\comment-service)
+2025-01-12T20:39:17.624+0100 DEBUG              [main]                         be.pxl.services.CommentTests  - Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T20:39:17.624+0100 INFO               [main]                         be.pxl.services.CommentTests  - No active profile set, falling back to 1 default profile: "default"
+2025-01-12T20:39:21.686+0100 INFO               [main]                         be.pxl.services.CommentTests  - Started CommentTests in 4.68 seconds (process running for 15.255)
+2025-01-12T21:17:30.965+0100 INFO               [main]                         be.pxl.services.controller.CommentControllerTest - Starting CommentControllerTest using Java 21.0.5 with PID 24156 (started by jorge in C:\Users\jorge\Documents\GitHub\project-KianVanDyckPXL\backend-java\project\comment-service)
+2025-01-12T21:17:30.967+0100 DEBUG              [main]                         be.pxl.services.controller.CommentControllerTest - Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T21:17:30.968+0100 INFO               [main]                         be.pxl.services.controller.CommentControllerTest - No active profile set, falling back to 1 default profile: "default"
+2025-01-12T21:17:32.596+0100 INFO               [main]                         be.pxl.services.controller.CommentControllerTest - Started CommentControllerTest in 3.069 seconds (process running for 6.315)
+2025-01-12T21:17:32.700+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Deleting comment: 1
+2025-01-12T21:17:32.742+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Getting comments for postId: 1
+2025-01-12T21:17:32.880+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Adding comment: CommentRequest(comment=New Comment, postId=1, author=author)
+2025-01-12T21:17:32.905+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Updating comment: UpdateCommentRequest(comment=Updated Comment)
+2025-01-12T21:17:43.551+0100 INFO               [main]                         be.pxl.services.CommentTests  - Starting CommentTests using Java 21.0.5 with PID 24156 (started by jorge in C:\Users\jorge\Documents\GitHub\project-KianVanDyckPXL\backend-java\project\comment-service)
+2025-01-12T21:17:43.551+0100 DEBUG              [main]                         be.pxl.services.CommentTests  - Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-01-12T21:17:43.551+0100 INFO               [main]                         be.pxl.services.CommentTests  - No active profile set, falling back to 1 default profile: "default"
+2025-01-12T21:17:47.983+0100 INFO               [main]                         be.pxl.services.CommentTests  - Started CommentTests in 4.515 seconds (process running for 21.702)
+2025-01-12T21:17:48.289+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Deleting comment: 1
+2025-01-12T21:17:48.323+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Getting comments for postId: 1
+2025-01-12T21:17:48.370+0100 INFO               [main]                         be.pxl.services.controller.CommentController - Adding comment: CommentRequest(comment=This is a new comment, postId=1, author=User)

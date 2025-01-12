@@ -32,7 +32,7 @@ spring:
           filters:
             - RewritePath=/comment/(?<path>.*), /$\{path}
         - id: post-service
-          uri: lb://POST-SERVICE
+          uri: lb://post-service
           predicates:
             - Path=/post/**
           filters:
