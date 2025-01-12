@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
 import { AuthService } from '../../services/auth.service';
 import { Notification } from '../../shared/models/notification.model';
@@ -18,7 +18,8 @@ export class NavbarComponent {
 
   constructor(
     private notificationService: NotificationService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router 
   ) { }
 
 
@@ -41,4 +42,9 @@ export class NavbarComponent {
     this.showNotifications = !this.showNotifications;
   }
 
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']); // Navigate to login after logout
+  }
 }

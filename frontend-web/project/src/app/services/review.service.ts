@@ -5,12 +5,14 @@ import { ReviewResponse } from '../shared/models/reviewResponse.model';
 import { Review } from '../shared/models/review.model';
 import { AuthService } from './auth.service';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ReviewService {
 
-  api: string = 'http://localhost:8093/review/api/reviews';
+  api: string = environment.reviewApiUrl;
   http: HttpClient = inject(HttpClient);
   
   authService: AuthService = inject(AuthService);
@@ -30,9 +32,9 @@ export class ReviewService {
     return this.http.get<ReviewResponse[]>(`${this.api}`, { headers });
   }
 
-  reviewPost(reviewId: number, review: Review): Observable<Comment> {
+  reviewPost(reviewId: number, review: Review): Observable<Review> {
     const headers = this.getHeaders();
-    return this.http.post<Comment>(`${this.api}/${reviewId}`, review, { headers }).pipe(
+    return this.http.post<Review>(`${this.api}/${reviewId}`, review, { headers }).pipe(
       catchError((error) => {
         throw error;
       })

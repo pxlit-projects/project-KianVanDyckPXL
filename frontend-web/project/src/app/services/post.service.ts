@@ -4,13 +4,13 @@ import { catchError, Observable } from 'rxjs';
 import { PostResponse } from '../shared/models/postResponse.model';
 import { Post } from '../shared/models/post.model';
 import { AuthService } from './auth.service';
-
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
-  api: string = 'http://localhost:8093/post/api/post';
+  api: string = environment.postApiUrl;
   http: HttpClient = inject(HttpClient);
 
   authService: AuthService = inject(AuthService);

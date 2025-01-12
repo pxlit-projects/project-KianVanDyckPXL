@@ -5,13 +5,14 @@ import { catchError, Observable } from 'rxjs';
 import { CommentResponse } from '../shared/models/commentResponse.model';
 import { Comment } from '../shared/models/comment.model';
 import { AuthService } from './auth.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentServiceService {
 
-  api: string = 'http://localhost:8093/comment/api/comment';
+  api: string = environment.commentApiUrl;
   http: HttpClient = inject(HttpClient);
   authService: AuthService = inject(AuthService);
 
