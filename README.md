@@ -16,5 +16,17 @@ Each folder contains its own specific `.gitignore` file.
 **:warning: complete these files asap, so you don't litter your repository with binary build artifacts!**
 
 ## How to setup and run this application
+###Frontend
+In frontend: 
+* docker build -t NAME
+* docker run -d -p PORT:80 NAME
 
-:heavy_check_mark:_(COMMENT) Add setup instructions and provide some direction to run the whole  application: frontend to backend._
+### Backend
+Run dockerfile for databases
+Startup
+  - Config service
+  - Discovery service
+  - Gateway service
+  - Review service
+  - Post service
+  - Comment service
